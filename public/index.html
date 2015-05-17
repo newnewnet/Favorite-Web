@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" ng-app="Favorite">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Favorite Web</title>
+
+  
+    <link rel="icon" href="/img/1431035041_github.png" type="image/x-icon">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-google-gapi/angular-google-gapi.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="app/index.js"></script>
+    <script src="app/data/data.js"></script>
+    <script src="app/nav.js"></script>
+
+  </head>
+  <body layout="row" class="container" ng-controller="favoriteController">
+
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2 md-closed ng-isolate-scope md-locked-open" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" tabindex="-1" >
+      <md-toolbar style="height:70px;padding: 10px" class="md-default-theme md-whiteframe-z2" >
+        <h1 class="md-toolbar-tools" style="margin:0px;  ">
+          <a ng-href="#/" layout="row" flex="100" class="docs-logo" href="#/" style="font-size:30px;">
+            <img ng-src="/img/1431035041_github.png" style="width: 50px;height: 50px;"/>
+            <div class="docs-logotype" style="margin-left: 16px;margin-top: 10px">Favorite Web</div>
+          </a>
+        </h1>
+      </md-toolbar>
+      <div  layout="column" class="md-sidenav-left md-whiteframe-z1 font " style="margin-top:6px" md-component-id="left" ng-show="LoginTrue" md-is-locked-open="$mdMedia('gt-sm')">   
+        <a class="md-button md-default-theme menus_actived menu" ng-transclude="" ng-href="#/" ng-class="{'btn-active':tabColor==1}" ng-click="chooesTabMenu(1)">
+          <md-icon md-svg-src="img/home.svg" class="md-default-theme icon" aria-hidden="true"></md-icon>
+          <span style="position: absolute; top: 17px;" >
+            หน้าหลัก
+          </span>
+        </a>
+        <a class="md-button md-default-theme menus_actived menu" ng-transclude="" ng-href="#/" ng-class="{'btn-active':tabColor==2}" ng-click="chooesTabMenu(2)">
+          <md-icon md-svg-src="img/work.svg" class="md-default-theme icon" aria-hidden="true"></md-icon>
+          <span style="position: absolute; top: 17px;" >
+            งาน
+          </span>
+        </a>
+        <a class="md-button md-default-theme menus_actived menu" ng-transclude="" ng-href="#/" ng-class="{'btn-active':tabColor==3}" ng-click="chooesTabMenu(3)">
+          <md-icon md-svg-src="img/game.svg" class="md-default-theme icon" aria-hidden="true"></md-icon>
+          <span style="position: absolute; top: 17px;" >
+            เกม
+          </span>
+        </a>
+        <a class="md-button md-default-theme menus_actived menu" ng-transclude="" ng-href="#/" ng-class="{'btn-active':tabColor==4}" ng-click="chooesTabMenu(4)">
+          <md-icon md-svg-src="img/picture.svg" class="md-default-theme icon" aria-hidden="true"></md-icon>
+          <span style="position: absolute; top: 17px;" >
+            รูปภาพ
+          </span>
+        </a>
+        <a class="md-button md-default-theme menus_actived menu" ng-transclude="" ng-href="#/" ng-class="{'btn-active':tabColor==5}" ng-click="chooesTabMenu(5)">
+          <md-icon md-svg-src="img/audio.svg" class="md-default-theme icon" aria-hidden="true"></md-icon>
+          <span style="position: absolute; top: 17px;" >
+            เพลง
+          </span>
+        </a>
+
+    
+      </div>
+    </md-sidenav>
+  
+    <div layout="column" role="main" flex>
+      <md-toolbar class="md-default-theme md-whiteframe-z2" style="height:70px">
+        <div layout="row" layout-wrap>
+
+          <button offset-sm="10" ng-click="toggleSidenav('left')" hide-gt-md class="menuBtn">
+          </button>
+          <div  flex="25"  offset="5" class="md-headline font" style="font-size:40px;line-height: 62px;">{{tabMenu}}</div>
+          <div flex offset-lg="90" offset-gt-lg="90" offset-md="75" offset-sm="60" ng-show="Loginfalse" ><img ng-click="doSingup()"ng-src="/img/1431035683_google-128.png" style="width: 50px;height: 50px;margin-top: 10px; "/>
+          </div>  
+          <div flex offset-lg="45" offset-gt-lg="50" offset-md="35" offset-gt-md="40"  offset-sm="45"  layout="row" ng-show="LoginTrue">
+            <img  class="md-whiteframe-z3"ng-src="{{gapi.user.picture}}" style="width: 50px;height: 50px;margin-top: 10px;border-radius:50%"/>
+            <h2 class="md-title" style="margin-left: 10px;"   hide-sm  >{{gapi.user.name}}</h3>
+          </div>
+
+        </div>
+      </md-toolbar>
+      <md-content md-scroll-y=""  flex="" class="md-default-theme" >      
+        <div layout="row"  class="ng-scope" style="margin-top:25px">
+          <div flex="80" offset-lg="10" offset-gt-lg="10" offset-md="10" offset-gt-md="10"  offset-sm="10">
+            <div class="md-whiteframe-z2" style="padding:10px">
+              <md-input-container>
+                <label>link</label>
+                <input required="" name="clientName" ng-model="project.clientName">
+              </md-input-container>
+
+              <div style="width: 100%;
+              height: 80px;
+              margin-top: 12px;
+              background: gb(170, 170, 170)  " layout="row">
+                <md-input-container flex="50">
+                  <label>Post name</label>
+                  <input ng-model="user.firstName">
+                </md-input-container>
+
+                <md-select placeholder="งาน"  flex="20"  offset="5" ng-model="someVal">
+                  <md-option value="work">งาน</md-option>
+                  <md-option value="game">เกม</md-option>
+                  <md-option value="music">เพลง</md-option>
+                  <md-option value="picture">รูปภาพ</md-option>
+                </md-select>
+                <div flex="10"   offset-lg="10" offset-gt-lg="10" offset-md="0" offset-gt-md="0"  offset-sm="0" offset-sm="0" >
+                  <md-button  class="md-raised md-primary" style="height: 51px;
+                  font-size: 20px;" >POST
+                  </md-button>
+                </div >
+              </div>
+            </div>
+
+            <div ui-view></div>
+             
+
+
+          </div>
+        </div>
+
+      </md-content>
+    </div>
+    
+
+  </body>
+</html>
