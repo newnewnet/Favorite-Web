@@ -1,7 +1,6 @@
 {
   "name": "FavoriteWeb",
   "version": "0.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
     "request": "~2.55.0",
@@ -13,5 +12,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/newnewnet/Favorite-Web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/newnewnet/Favorite-Web/issues"
+  },
+  "homepage": "https://github.com/newnewnet/Favorite-Web"
 }
